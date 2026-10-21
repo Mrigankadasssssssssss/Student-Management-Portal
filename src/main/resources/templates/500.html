@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Server Error | TeachingKnights</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+          background: linear-gradient(135deg, #0f172a, #1e3a8a 55%, #312e81);
+          color: #f1f5f9;
+          overflow: hidden;
+          position: relative;
+        }
+
+        header {
+          padding: 20px 32px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          z-index: 1;
+        }
+
+        .logo-icon { font-size: 2rem; color: #fbbf24; }
+
+        .logo-text {
+          font-size: 1.35rem;
+          font-weight: 700;
+          letter-spacing: .5px;
+        }
+
+        .logo-text span { color: #fbbf24; }
+
+        .logo-sub {
+          font-size: .7rem;
+          color: #94a3b8;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        main {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+          z-index: 1;
+        }
+
+        .container { text-align: center; max-width: 580px; }
+
+        .knight {
+          font-size: 5rem;
+          color: #fbbf24;
+          display: inline-block;
+          animation: float 3s ease-in-out infinite;
+          filter: drop-shadow(0 6px 14px rgba(251, 191, 36, .35));
+        }
+
+        .code {
+          font-size: clamp(5.5rem, 20vw, 10rem);
+          font-weight: 800;
+          line-height: 1;
+          letter-spacing: 8px;
+          background: linear-gradient(90deg, #fbbf24, #f97316, #ef4444);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+
+        h1 { font-size: 1.8rem; margin: 10px 0; }
+
+        p {
+          color: #cbd5e1;
+          line-height: 1.65;
+          margin-bottom: 14px;
+        }
+
+        .note {
+          background: rgba(255, 255, 255, .07);
+          border: 1px solid rgba(255, 255, 255, .15);
+          border-radius: 12px;
+          padding: 14px 18px;
+          font-size: .92rem;
+          margin: 18px 0 28px;
+        }
+
+        .buttons {
+          display: flex;
+          gap: 14px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .btn {
+          padding: 12px 28px;
+          border-radius: 999px;
+          font-size: 1rem;
+          font-weight: 600;
+          text-decoration: none;
+          border: 2px solid transparent;
+          cursor: pointer;
+          transition: transform .2s, background .2s;
+        }
+
+        .btn:hover { transform: translateY(-3px); }
+
+        .btn-primary {
+          background: linear-gradient(90deg, #fbbf24, #f97316);
+          color: #1e1b4b;
+          box-shadow: 0 6px 20px rgba(251, 191, 36, .35);
+        }
+
+        .btn-secondary {
+          background: transparent;
+          color: #f1f5f9;
+          border-color: rgba(255, 255, 255, .4);
+        }
+
+        .btn-secondary:hover { background: rgba(255, 255, 255, .1); }
+
+        .ref {
+          margin-top: 28px;
+          font-size: .8rem;
+          color: #94a3b8;
+          font-family: ui-monospace, Consolas, monospace;
+        }
+
+        footer {
+          text-align: center;
+          padding: 16px;
+          font-size: .8rem;
+          color: #64748b;
+          z-index: 1;
+        }
+
+        .bg-piece {
+          position: absolute;
+          opacity: .06;
+          user-select: none;
+          pointer-events: none;
+        }
+        .bg1 { font-size: 16rem; bottom: -3rem; left: -2rem; }
+        .bg2 { font-size: 13rem; top: 4rem; right: -1rem; transform: scaleX(-1); }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(-4deg); }
+          50% { transform: translateY(-12px) rotate(4deg); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .knight { animation: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-piece bg1">♞</div>
+<div class="bg-piece bg2">♞</div>
+
+<header>
+    <div class="logo-icon">♞</div>
+    <div>
+        <div class="logo-text">Teaching<span>Knights</span></div>
+        <div class="logo-sub">Student Management System</div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="knight">♞</div>
+        <div class="code">500</div>
+        <h1>Oops! Our server hit a roadblock</h1>
+        <p>
+            TeachingKnights ran into an unexpected problem while processing your request.
+            This is not your fault, and our team has been notified.
+        </p>
+
+        <div class="note">
+            Don't worry: your student records, attendance, and grades are safe.
+            Please try again in a few moments.
+        </div>
+
+        <div class="buttons">
+            <a href="/" class="btn btn-primary">Back to Dashboard</a>
+            <button class="btn btn-secondary" onclick="location.reload()">Try Again</button>
+        </div>
+
+        <div class="ref">Error reference: <span id="ref"></span></div>
+    </div>
+</main>
+
+<footer>&copy; <span id="year"></span> TeachingKnights. All rights reserved.</footer>
+
+<script>
+    document.getElementById("ref").textContent =
+      "TK-" + Math.random().toString(36).slice(2, 10).toUpperCase();
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
